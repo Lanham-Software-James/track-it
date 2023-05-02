@@ -9,18 +9,10 @@ import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 export class CreateWorkoutComponent {
 
-  exerciseFormGroup: FormGroup = this.fb.group({
-    exercise_name: [''],
-    sets:[''],
-    reps:[''],
-    rpe:[''],
-    notes:['']
-  })
-
   createWorkout = this.fb.group({
     workoutName: ['', Validators.required],
     exercises: this.fb.array([
-      this.exerciseFormGroup
+      this.generateExerciseGroup()
     ])
   });
 
@@ -33,12 +25,20 @@ export class CreateWorkoutComponent {
   }
 
   addExercise(): void {
-    this.exercises.push(this.exerciseFormGroup);
+    this.exercises.push(this.generateExerciseGroup());
   }
 
   saveWorkout(): void {
-    this.exercises.controls.forEach(value => {
-      console.log(value.value);
-    });
+
+  }
+
+  generateExerciseGroup(): FormGroup {
+    return this.fb.group({
+      exercise_name: [''],
+      sets:[''],
+      reps:[''],
+      rpe:[''],
+      notes:['']
+    })
   }
 }
