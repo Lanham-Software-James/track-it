@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "track-it-3c706": {
+      "hosting": {
+        "track-it": [
+          "track-it-3c706"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "track-it-3c706"
+  }
+}
