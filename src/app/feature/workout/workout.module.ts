@@ -6,8 +6,9 @@ import { WorkoutRoutingModule } from './workout-routing.module';
 import { DashboardComponent } from './component/dashboard/dashboard.component';
 import { CreateWorkoutComponent } from './component/create-workout/create-workout.component';
 
-import { MatFormFieldModule} from '@angular/material/form-field';
-import { MatInputModule} from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
 
 
 @NgModule({
@@ -19,8 +20,10 @@ import { MatInputModule} from '@angular/material/input';
     CommonModule,
     ReactiveFormsModule,
     WorkoutRoutingModule,
+    
     MatFormFieldModule,
     MatInputModule,
+    MatButtonModule,
   ]
 })
 export class WorkoutModule { }
