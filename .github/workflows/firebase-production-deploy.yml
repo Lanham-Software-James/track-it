@@ -10,6 +10,14 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - run: npm ci && npm run test
+        env:
+          projectId: ${{ secrets.projectId }}
+          appId: ${{ secrets.appId }}
+          storageBucket: ${{ secrets.storageBucket }}
+          apiKey: ${{ secrets.apiKey }}
+          authDomain: ${{ secrets.authDomain }}
+          messagingSenderId: ${{ secrets.messagingSenderId }}
+          measurementId: ${{ secrets.measurementId }}
 
   build_and_deploy:
     runs-on: ubuntu-latest
