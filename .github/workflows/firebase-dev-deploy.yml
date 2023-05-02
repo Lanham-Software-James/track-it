@@ -6,12 +6,26 @@ on:
       - development
 
 jobs:
-  test:
+
+  install:
     runs-on: ubuntu-latest
-    
     steps:
       - uses: actions/checkout@v3
-      - run: npm ci && npm run test
+      - run: npm
+
+  lint:
+    runs-on: ubuntu-latest
+    needs: install
+    steps:
+      - uses: actions/checkout@v3
+      - run: npx eslint ./src/
+
+  test:
+    runs-on: ubuntu-latest
+    needs: lint
+    steps:
+      - uses: actions/checkout@v3
+      - run: npm run test
         env:
           projectId: ${{ secrets.projectId }}
           appId: ${{ secrets.appId }}
@@ -21,15 +35,12 @@ jobs:
           messagingSenderId: ${{ secrets.messagingSenderId }}
           measurementId: ${{ secrets.measurementId }}
 
-
   build_and_deploy:
     runs-on: ubuntu-latest
-
     needs: test
-
     steps:
       - uses: actions/checkout@v3
-      - run: npm ci && npm run build
+      - run: npm run build
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
