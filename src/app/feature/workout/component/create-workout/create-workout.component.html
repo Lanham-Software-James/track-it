@@ -1,1 +1,24 @@
-<p>create-workout works!</p>
+<h1>Create Workout</h1>
+<hr>
+<form [formGroup]="createWorkout" (ngSubmit)="saveWorkout()">
+
+  <h2>Workout Details</h2>
+  <mat-form-field appearance="fill">
+    <mat-label>Workout Title</mat-label>
+    <input matInput>
+  </mat-form-field>
+  
+  <h2>Exercises</h2>
+  <div id="exercise-list" formArrayName="exercises">
+    <div class="exercises" *ngFor="let exercise of exercises.controls; let i=index">
+      <mat-form-field appearance="fill" [formGroupName]="i">
+        <mat-label>Exercise</mat-label>
+        <input matInput formControlName="exercise_name">
+      </mat-form-field>
+    </div>
+    
+    <button mat-raised-button color="secondary" (click)="addExercise()">Add Another Exercise</button>
+  </div>
+
+  <button mat-raised-button color="primary" (click)="saveWorkout()">Save Workout</button>
+</form>
