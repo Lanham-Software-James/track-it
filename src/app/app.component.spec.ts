@@ -20,16 +20,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'track-it'`, () => {
+  it(`should have as title 'Track It!'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('track-it');
+    expect(app.title).toEqual('Track It!');
   });
 
-  it('should render title', () => {
+  it('should render the router-outlet', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('track-it app is running!');
+    expect(compiled.querySelector('router-outlet')).toBeTruthy();
   });
 });
