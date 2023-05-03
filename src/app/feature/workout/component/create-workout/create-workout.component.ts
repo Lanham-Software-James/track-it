@@ -12,7 +12,7 @@ export class CreateWorkoutComponent {
   createWorkout = this.fb.group({
     workoutName: ['', Validators.required],
     exercises: this.fb.array([
-      this.generateExerciseGroup()
+      this.generateWeightLiftingGroup()
     ])
   });
 
@@ -25,14 +25,14 @@ export class CreateWorkoutComponent {
   }
 
   addExercise(): void {
-    this.exercises.push(this.generateExerciseGroup());
+    this.exercises.push(this.generateWeightLiftingGroup());
   }
 
   saveWorkout(): void {
 
   }
 
-  generateExerciseGroup(): FormGroup {
+  generateWeightLiftingGroup(): FormGroup {
     return this.fb.group({
       exercise_name: [''],
       sets:[''],
