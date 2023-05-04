@@ -1,16 +1,26 @@
-<div [formGroup]="form">
-  <label [attr.for]="question.key">{{question.label}}</label>
+<div [ngSwitch]="question.controlType">
 
-  <div [ngSwitch]="question.controlType">
+  <mat-form-field *ngSwitchCase="'textbox'" appearance="fill">
+    <mat-label>{{question.label}}</mat-label>
+    <input matInput [id]="question.key" [type]="question.type">
+    <mat-error *ngIf="question.required">Please enter value!</mat-error>
+  </mat-form-field>
 
-    <input *ngSwitchCase="'textbox'" [formControlName]="question.key"
-            [id]="question.key" [type]="question.type">
+  <mat-form-field *ngSwitchCase="'textarea'" appearance="fill">
+    <mat-label>{{question.label}}</mat-label>
+    <textarea matInput 
+              [id]="question.key" 
+              [type]="question.type" 
+              cdkTextareaAutosize
+              #autosize="cdkTextareaAutosize"
+              cdkAutosizeMinRows="1"
+              cdkAutosizeMaxRows="5"></textarea>
+    <mat-error *ngIf="question.required">Please enter value!</mat-error>
+  </mat-form-field>
 
-    <select [id]="question.key" *ngSwitchCase="'dropdown'" [formControlName]="question.key">
-      <option *ngFor="let opt of question.options" [value]="opt.key">{{opt.value}}</option>
-    </select>
+  <!--Need to do-->
+  <select [id]="question.key" *ngSwitchCase="'dropdown'">
+    <option *ngFor="let opt of question.options" [value]="opt.key">{{opt.value}}</option>
+  </select>
 
-  </div>
-
-  <div class="errorMessage" *ngIf="!isValid">{{question.label}} is required</div>
 </div>

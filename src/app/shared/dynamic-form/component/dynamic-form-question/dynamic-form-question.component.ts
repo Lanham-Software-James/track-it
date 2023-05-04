@@ -1,5 +1,6 @@
-import { Component, Input } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { Component, Input, NgZone, ViewChild } from '@angular/core';
+import { CdkTextareaAutosize } from '@angular/cdk/text-field';
+import { take } from 'rxjs/operators';
 
 import { QuestionBase } from '../../class/question-base/question-base';
 
@@ -8,7 +9,14 @@ import { QuestionBase } from '../../class/question-base/question-base';
   templateUrl: './dynamic-form-question.component.html'
 })
 export class DynamicFormQuestionComponent {
+
+  constructor(private _ngZone: NgZone) {}
   @Input() question!: QuestionBase<string>;
-  @Input() form!: FormGroup;
-  get isValid() { return this.form.controls[this.question.key].valid; }
+  @ViewChild('autosize') autosize!: CdkTextareaAutosize;
+
+  triggerResize() {
+    // Wait for changes to be applied, then trigger textarea resize.
+    this._ngZone.onStable.pipe(take(1)).subscribe(() => this.autosize.resizeToFitContent(true));
+  }
+  
 }

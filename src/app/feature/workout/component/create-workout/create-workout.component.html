@@ -9,43 +9,12 @@
   </mat-form-field>
   
   <h2>Exercises</h2>
-  <div id="exercise-list" formArrayName="exercises">
-    <div class="exercises" *ngFor="let exercise of exercises.controls; let i=index">
-      <div class="weight-lifting">
-        <!--Exercise Name-->
-        <mat-form-field appearance="fill" [formGroupName]="i">
-          <mat-label>Exercise Name</mat-label>
-          <input matInput type="text" formControlName="exercise_name">
-        </mat-form-field>
-
-        <!--Sets-->
-        <mat-form-field appearance="fill" [formGroupName]="i">
-          <mat-label>Sets</mat-label>
-          <input matInput type="number" formControlName="exercise_name">
-        </mat-form-field>
-
-        <!--Reps-->
-        <mat-form-field appearance="fill" [formGroupName]="i">
-          <mat-label>Reps</mat-label>
-          <input matInput type="number" formControlName="exercise_name">
-        </mat-form-field>
-
-        <!--RPE-->
-        <mat-form-field appearance="fill" [formGroupName]="i">
-          <mat-label>RPE</mat-label>
-          <input matInput type="number" formControlName="exercise_name">
-        </mat-form-field>
-
-        <!--Notes-->
-        <mat-form-field appearance="fill" [formGroupName]="i">
-          <mat-label>Notes</mat-label>
-          <input matInput type="text" formControlName="exercise_name">
-        </mat-form-field>
-      </div>
-    </div>
-    
-    <button type="button" mat-raised-button color="secondary" (click)="addExercise()">Add Another Exercise</button>
+  
+  <div *ngFor="let exercise of exercises.controls; let i = index" class="form-row">
+    <app-dynamic-form [questions]="questions[i]"></app-dynamic-form>
   </div>
+
+  <button mat-raised-button color="secondary" type="button" (click)="addExercise()">Add Exercise</button>
 
   <button mat-raised-button color="primary">Save Workout</button>
 </form>

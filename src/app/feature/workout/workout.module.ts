@@ -10,6 +10,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 
+import { DynamicFormModule } from 'src/app/shared/dynamic-form/dynamic-form.module';
+
 
 @NgModule({
   declarations: [
@@ -24,6 +26,7 @@ import { MatButtonModule } from '@angular/material/button';
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
+    DynamicFormModule
   ]
 })
 export class WorkoutModule { }
